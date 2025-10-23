@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: NFL Sentiment Ingestion API
+  version: '0.1'
+paths:
+  /ingest:
+    post:
+      summary: Ingest recent public posts for a team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                team_id:
+                  type: string
+                timeframe:
+                  type: string
+                  enum: ["24h","7d","30d"]
+                use_verified_weighting:
+                  type: boolean
+              required: [team_id]
+      responses:
+        '200':
+          description: Ingestion accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  analysis_id:
+                    type: string
+                  status:
+                    type: string

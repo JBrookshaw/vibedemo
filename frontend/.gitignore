@@ -1,0 +1,4 @@
+# Frontend-specific ignores
+node_modules/
+dist/
+build/

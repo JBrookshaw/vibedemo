@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Analysis & Generation API
+  version: '0.1'
+paths:
+  /analysis/{analysis_id}:
+    get:
+      summary: Get analysis results
+      parameters:
+        - name: analysis_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Analysis result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  analysis_id:
+                    type: string
+                  emotion_breakdown:
+                    type: object
+                  top_topics:
+                    type: array
+                    items:
+                      type: string
+                  sample_tweets:
+                    type: array
+                    items:
+                      type: object
+  /generate:
+    post:
+      summary: Generate image from analysis result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                analysis_id:
+                  type: string
+              required: [analysis_id]
+      responses:
+        '200':
+          description: Image generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image_id:
+                    type: string
+                  image_url:
+                    type: string

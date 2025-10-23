@@ -1,0 +1,6 @@
+# Backend-specific ignores
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+_poc_images/
